@@ -57,6 +57,14 @@ else
   end
 end
 
+directory "/etc/swift" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+  only_if { node[:platform] == "ubuntu" }
+end
+
 template "/etc/swift/swift.conf" do
   owner node[:swift][:user]
   group node[:swift][:group]
